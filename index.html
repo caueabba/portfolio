@@ -153,6 +153,56 @@
     #hero{padding:5rem 1.25rem 3rem}
     footer{padding:1.5rem 1.25rem}
   }
+  .lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightbox-prev, .lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.2); }
 </style>
 </head>
 <body>
@@ -234,17 +284,34 @@
       </div>
       <div class="reveal">
         <div class="skills-block">
-          <p class="skills-title">// stack principal</p>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">HTML</span><span class="skill-pct">100%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="1"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">CSS</span><span class="skill-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.9"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">JavaScript</span><span class="skill-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.75"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.6"></div></div></div>
-          <div class="skill-item"><div class="skill-header"><span class="skill-name">Git / GitHub</span><span class="skill-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="0.7"></div></div></div>
+          <p class="skills-title">// proficiente</p>
+          <div class="tools-grid">
+            <span class="tool-tag">HTML</span>
+            <span class="tool-tag">CSS</span>
+            <span class="tool-tag">Bootstrap</span>
+          </div>
+
+          <p class="skills-title" style="margin-top:1.5rem">// intermediário</p>
+          <div class="tools-grid">
+            <span class="tool-tag">JavaScript</span>
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">SASS</span>
+          </div>
+
+          <p class="skills-title" style="margin-top:1.5rem">// aprendendo</p>
+          <div class="tools-grid">
+            <span class="tool-tag">Git</span>
+            <span class="tool-tag">PostgreSQL</span>
+            <span class="tool-tag">MongoDB</span>
+          </div>
+
           <p class="skills-title" style="margin-top:1.5rem">// ferramentas</p>
           <div class="tools-grid">
-            <span class="tool-tag">VS Code</span><span class="tool-tag">GitHub</span><span class="tool-tag">Bootstrap</span>
-            <span class="tool-tag">PostgreSQL</span><span class="tool-tag">MongoDB</span><span class="tool-tag">Insomnia</span>
-            <span class="tool-tag">Beekeeper</span><span class="tool-tag">Photoshop</span>
+            <span class="tool-tag">VS Code</span>
+            <span class="tool-tag">GitHub</span>
+            <span class="tool-tag">Insomnia</span>
+            <span class="tool-tag">Beekeeper</span>
+            <span class="tool-tag">Photoshop</span>
           </div>
         </div>
       </div>
@@ -307,31 +374,214 @@
     <div class="section-label reveal"><span class="num">03.</span><h2>Projetos</h2></div>
     <div class="projects-grid">
       <div class="project-card reveal">
-        <span class="project-wip">em construção</span>
-        <div class="project-icon">🌐</div>
-        <div class="project-name">Portfólio Pessoal</div>
-        <p class="project-desc">Site desenvolvido do zero para apresentar trajetória, habilidades e projetos. Construído com HTML, CSS vanilla e JavaScript, com foco em performance e design.</p>
-        <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap</span></div>
+        <div class="carousel" style="position:relative; margin-bottom:1rem; border-radius:4px; overflow:hidden;">
+          <div class="carousel-track" style="display:flex; transition: transform 0.4s ease;">
+            <img src="img/boot1.png" style="min-width:100%; height:160px; object-fit:cover; cursor:pointer;"
+              onclick="openLightbox(['img/boot1.png','img/boot2.png','img/boot3.png','img/boot4.png'], 0)">
+            
+            <img src="img/boot2.png" style="min-width:100%; height:160px; object-fit:cover; cursor:pointer;"
+              onclick="openLightbox(['img/boot1.png','img/boot2.png','img/boot3.png','img/boot4.png'], 1)">
+            
+            <img src="img/boot3.png" style="min-width:100%; height:160px; object-fit:cover; cursor:pointer;"
+              onclick="openLightbox(['img/boot1.png','img/boot2.png','img/boot3.png','img/boot4.png'], 2)">
+            
+            <img src="img/boot4.png" style="min-width:100%; height:160px; object-fit:cover; cursor:pointer;"
+              onclick="openLightbox(['img/boot1.png','img/boot2.png','img/boot3.png','img/boot4.png'], 3)">
+          </div>
+          <button onclick="moveCarousel(this, -1)"
+            style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">‹</button>
+          <button onclick="moveCarousel(this, 1)"
+            style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">›</button>
+        </div>
+        <div class="project-name">Outer Space</div>
+        <p class="project-desc">Site multi-página sobre exploração espacial com layout fullscreen, imagens de fundo imersivas
+          e navegação entre missões. Projeto final do curso de HTML e CSS.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">Bootstrap</span>
+          <span class="project-tag">AOS</span>
+          <span class="project-tag">SASS</span>
+        </div>
         <div class="project-links">
-          <a href="https://github.com/caueabba" target="_blank">↗ GitHub</a>
-          <a href="https://caueabba.github.io/portfolio/" target="_blank">↗ Demo</a>
+          <a href="#" target="_blank">↗ GitHub</a>
+          <a href="#" target="_blank">↗ Demo</a>
         </div>
       </div>
-      <div class="project-card reveal" style="transition-delay:.1s">
-        <span class="project-wip">em breve</span>
-        <div class="project-icon">⚙️</div>
-        <div class="project-name">Projeto 02</div>
-        <p class="project-desc">Em desenvolvimento. Breve descrição do que o projeto faz, qual problema resolve e quais tecnologias foram utilizadas.</p>
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">JavaScript</span></div>
-        <div class="project-links"><a href="https://github.com/caueabba" target="_blank">↗ GitHub</a></div>
+      <div class="project-card reveal">
+  <div class="carousel" style="position:relative; margin-bottom:1rem; border-radius:4px; overflow:hidden;">
+    <div class="carousel-track" style="display:flex; transition: transform 0.4s ease;">
+      <img src="img/landing1.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 0)">
+      <img src="img/landing2.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 1)">
+      <img src="img/landing3.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 2)">
+      <img src="img/landing4.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 3)">
+      <img src="img/landing5.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 4)">
+      <img src="img/landing6.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 5)">
+      <img src="img/landing7.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/landing1.png','img/landing2.png','img/landing3.png','img/landing4.png','img/landing5.png','img/landing6.png','img/landing7.png'], 6)">
+    </div>
+    <button onclick="moveCarousel(this, -1)"
+      style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">‹</button>
+    <button onclick="moveCarousel(this, 1)"
+      style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">›</button>
+  </div>
+  <div class="project-name">Dra. Ana Lima — Landing Page</div>
+  <p class="project-desc">Landing page para psicóloga infantil com seções de serviços, depoimentos, abordagem
+    terapêutica e formulário de agendamento. Foco em conversão e UX.</p>
+  <div class="project-tags">
+    <span class="project-tag">HTML</span>
+    <span class="project-tag">CSS</span>
+    <span class="project-tag">JavaScript</span>
+    <span class="project-tag">Bootstrap</span>
+  </div>
+  <div class="project-links">
+    <a href="#" target="_blank">↗ GitHub</a>
+    <a href="#" target="_blank">↗ Demo</a>
+  </div>
       </div>
-      <div class="project-card reveal" style="transition-delay:.2s">
-        <span class="project-wip">em breve</span>
-        <div class="project-icon">🛠️</div>
-        <div class="project-name">Projeto 03</div>
-        <p class="project-desc">Em desenvolvimento. Breve descrição do que o projeto faz, qual problema resolve e quais tecnologias foram utilizadas.</p>
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
-        <div class="project-links"><a href="https://github.com/caueabba" target="_blank">↗ GitHub</a></div>
+      <div class="project-card reveal">
+  <div class="carousel" style="position:relative; margin-bottom:1rem; border-radius:4px; overflow:hidden;">
+    <div class="carousel-track" style="display:flex; transition: transform 0.4s ease;">
+      <img src="img/fastCrud1.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 0)">
+      <img src="img/fastCrud2.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 1)">
+      <img src="img/fastCrud3.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 2)">
+      <img src="img/fastRouter.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 3)">
+      <img src="img/fastTaskService1.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 4)">
+      <img src="img/fastToken1.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 5)">
+      <img src="img/fastUserSchema.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 6)">
+      <img src="img/fastApiVersion.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 7)">
+      <img src="img/fastApp.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 8)">
+      <img src="img/fastConfig.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/fastCrud1.png','img/fastCrud2.png','img/fastCrud3.png','img/fastRouter.png','img/fastTaskService1.png','img/fastToken1.png','img/fastUserSchema.png','img/fastApiVersion.png','img/fastApp.png','img/fastConfig.png'], 9)">
+    </div>
+    <button onclick="moveCarousel(this, -1)"
+      style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">‹</button>
+    <button onclick="moveCarousel(this, 1)"
+      style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">›</button>
+  </div>
+  <div class="project-name">TODOFast — API REST</div>
+  <p class="project-desc">API REST de gerenciamento de tarefas com autenticação JWT, CRUD completo, arquitetura em
+    camadas e documentação automática via Swagger. Banco de dados MongoDB com Beanie ODM.</p>
+  <div class="project-tags">
+    <span class="project-tag">Python</span>
+    <span class="project-tag">FastAPI</span>
+    <span class="project-tag">MongoDB</span>
+    <span class="project-tag">JWT</span>
+    <span class="project-tag">Pydantic</span>
+    <span class="project-tag">Beanie</span>
+  </div>
+  <div class="project-links">
+    <a href="#" target="_blank">↗ GitHub</a>
+  </div>
+      </div>
+      <div class="project-card reveal">
+  <div class="carousel" style="position:relative; margin-bottom:1rem; border-radius:4px; overflow:hidden;">
+    <div class="carousel-track" style="display:flex; transition: transform 0.4s ease;">
+      <img src="img/django1.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/django1.png','img/django2.png','img/django3.png'], 0)">
+      <img src="img/django2.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/django1.png','img/django2.png','img/django3.png'], 1)">
+      <img src="img/django3.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/django1.png','img/django2.png','img/django3.png'], 2)">
+    </div>
+    <button onclick="moveCarousel(this, -1)"
+      style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">‹</button>
+    <button onclick="moveCarousel(this, 1)"
+      style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">›</button>
+  </div>
+  <div class="project-name">App Livro — Django</div>
+  <p class="project-desc">Aplicação web de cadastro de livros com autenticação de usuários, CRUD completo e interface
+    com templates Django. Banco de dados SQLite.</p>
+  <div class="project-tags">
+    <span class="project-tag">Python</span>
+    <span class="project-tag">Django</span>
+    <span class="project-tag">SQLite</span>
+    <span class="project-tag">HTML</span>
+    <span class="project-tag">CSS</span>
+  </div>
+  <div class="project-links">
+    <a href="#" target="_blank">↗ GitHub</a>
+  </div>
+      </div>
+      <div class="project-card reveal">
+  <div class="carousel" style="position:relative; margin-bottom:1rem; border-radius:4px; overflow:hidden;">
+    <div class="carousel-track" style="display:flex; transition: transform 0.4s ease;">
+      <img src="img/flaskApiTmdb.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 0)">
+      <img src="img/flaskCadLivros.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 1)">
+      <img src="img/flaskDiario.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 2)">
+      <img src="img/flaskHtml.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 3)">
+      <img src="img/flaskListaLivros.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 4)">
+      <img src="img/flaskListaTarefas.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 5)">
+      <img src="img/flaskVisaoGeral.png"
+        style="min-width:100%; height:160px; object-fit:cover; object-position:top; cursor:pointer;"
+        onclick="openLightbox(['img/flaskApiTmdb.png','img/flaskCadLivros.png','img/flaskDiario.png','img/flaskHtml.png','img/flaskListaLivros.png','img/flaskListaTarefas.png','img/flaskVisaoGeral.png'], 6)">
+    </div>
+    <button onclick="moveCarousel(this, -1)"
+      style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">‹</button>
+    <button onclick="moveCarousel(this, 1)"
+      style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:#fff; border:none; border-radius:3px; padding:4px 8px; cursor:pointer; font-size:12px;">›</button>
+  </div>
+  <div class="project-name">AppPython — Flask</div>
+  <p class="project-desc">Aplicação web multi-módulo com Flask: lista de filmes via API TMDB, cadastro de livros com
+    CRUD, diário de notas e lista de tarefas. Templates Jinja2 com Bootstrap.</p>
+  <div class="project-tags">
+    <span class="project-tag">Python</span>
+    <span class="project-tag">Flask</span>
+    <span class="project-tag">Jinja2</span>
+    <span class="project-tag">TMDB API</span>
+    <span class="project-tag">Bootstrap</span>
+    <span class="project-tag">SQLite</span>
+  </div>
+  <div class="project-links">
+    <a href="#" target="_blank">↗ GitHub</a>
+  </div>
       </div>
     </div>
   </div>
@@ -368,6 +618,13 @@
   <span>desenvolvido com HTML, CSS & JS</span>
 </footer>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-prev" onclick="shiftLightbox(-1, event)">‹</button>
+  <img id="lightbox-img" src="">
+  <button class="lightbox-next" onclick="shiftLightbox(1, event)">›</button>
+</div>
+
 <script>
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
@@ -387,6 +644,36 @@
   }, { threshold: 0.3 });
   const ab = document.querySelector('#about');
   if (ab) aboutObs.observe(ab);
+
+  function moveCarousel(btn, dir) {
+      const track = btn.parentElement.querySelector('.carousel-track');
+      const total = track.children.length;
+      track._index = ((track._index || 0) + dir + total) % total;
+      track.style.transform = `translateX(-${track._index * 100}%)`;
+    }
+  
+  const lightboxImgs = [];
+    let lightboxIndex = 0;
+
+    function openLightbox(imgs, index) {
+      lightboxImgs.length = 0;
+      imgs.forEach(i => lightboxImgs.push(i));
+      lightboxIndex = index;
+      document.getElementById('lightbox-img').src = lightboxImgs[lightboxIndex];
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+    }
+
+    function shiftLightbox(dir, e) {
+      e.stopPropagation();
+      lightboxIndex = (lightboxIndex + dir + lightboxImgs.length) % lightboxImgs.length;
+      document.getElementById('lightbox-img').src = lightboxImgs[lightboxIndex];
+    }
 </script>
 </body>
 </html>
